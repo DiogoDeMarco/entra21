@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cadastro</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="body-bg">
+
+  <div class="card">
+    <h2 class="card-title">Login</h2>
+
+    <form>
+
+      <div class="form-group">
+        <label class="form-label">Nome</label>
+        <input id="nome" class="form-input" type="text" placeholder="Digite seu nome" required>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Email</label>
+        <input id="email" class="form-input" type="email" placeholder="Digite seu email" required>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Senha</label>
+        <input id="senha" class="form-input" type="password" placeholder="Digite sua senha" required>
+      </div>
+
+
+      <button class="btn-submit" type="button" onclick="login()">Entrar</button>
+
+    </form>
+
+    <div class="card-footer">
+      Ainda não tem conta? <a class="card-link" href="cadastro.html">Cadastrar-se</a>
+    </div>
+
+  </div>
+
+  <script>
+    function login() {
+    const nome = document.getElementById("nome").value;
+    const email = document.getElementById("email").value;
+    const senha = document.getElementById("senha").value;
+
+    let lista = JSON.parse(localStorage.getItem("clientes"));
+
+    let usuario = lista.find(p => p.nome === nome && p.email === email && p.senha === senha);
+
+    if (usuario) {
+      alert("Login realizado!");
+      window.location.href = "index.html";
+
+    } else {
+      alert("Email ou senha incorretos.");
+    }
+  }
+  </script>
+
+</body>
+</html>

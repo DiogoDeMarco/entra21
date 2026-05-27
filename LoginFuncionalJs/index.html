@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Lista de Tarefas</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f2f2f2;
+      display: flex;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .app {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      width: 400px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 15px;
+    }
+
+    .form-group {
+      margin-bottom: 10px;
+    }
+
+    .input-task {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .btn-add {
+      width: 100%;
+      padding: 10px;
+      background: #4caf50;
+      border: none;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    .btn-add:hover {
+      background: #45a049;
+    }
+
+    .task-list {
+      margin-top: 20px;
+    }
+
+    .task-item {
+      background: #eee;
+      padding: 10px;
+      border-radius: 5px;
+      margin-bottom: 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .btn-delete {
+      background: red;
+      color: white;
+      border: none;
+      padding: 5px 8px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="app">
+
+  <h2>Minhas Tarefas</h2>
+
+  <!-- Cadastro -->
+  <div class="form-group">
+    <input class="input-task" id="taskInput" type="text" placeholder="Digite uma tarefa">
+  </div>
+
+  <button class="btn-add" onclick="addTask()">Adicionar</button>
+
+  <!-- Lista -->
+  <div class="task-list" id="taskList"></div>
+
+</div>
+
+<script>
+  function addTask() {
+    const input = document.getElementById("taskInput");
+    const list = document.getElementById("taskList");
+
+    if (input.value.trim() === "") return;
+
+    // cria item
+    const item = document.createElement("div");
+    item.className = "task-item";
+
+    const text = document.createElement("span");
+    text.innerText = input.value;
+
+    const btn = document.createElement("button");
+    btn.innerText = "X";
+    btn.className = "btn-delete";
+    btn.onclick = function () {
+      item.remove();
+    };
+
+    item.appendChild(text);
+    item.appendChild(btn);
+    list.appendChild(item);
+
+    input.value = "";
+  }
+</script>
+
+</body>
+</html>
